@@ -141,7 +141,7 @@ def chat(request: ChatRequest):
     messages.append({"role": "user", "content": request.message})
 
     api_kwargs = {
-        "model": "deepseek-v4-flash",
+        "model": "deepseek-flash",
         "messages": messages,
         "stream": False,
         "extra_body": {"thinking": {"type": "disabled"}},
