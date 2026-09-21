@@ -110,7 +110,7 @@ def handle_exception(request: Request, exc: Exception):
     return JSONResponse(content={"code": 500, "message": f"url:{request.url} err:{exc}", "data": None})
 
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def root():
     return FileResponse("static/index.html")
 
@@ -158,7 +158,7 @@ def chat(request: ChatRequest):
     return APIResponse(code=200, message="success", data=ai_response)
 
 
-@app.get("/api/sessions")
+@app.api_route("/api/sessions", methods=["GET", "HEAD"])
 def get_sessions():
     session_ids = [file.split(".")[0] for file in os.listdir("sessions")]
     session_ids.sort(reverse=True)
